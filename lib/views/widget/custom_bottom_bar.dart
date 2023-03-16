@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapplication/views/news%20view%20cubit/news_view_cubit.dart';
+import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({Key? key}) : super(key: key);
 
   @override
-  BottomNavigationBar build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: (index)
-      {
-
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewsViewCubit,NewsViewState>(
+      builder: (context,state){
+        var cubit = BlocProvider.of<NewsViewCubit>(context);
+        return BottomNavigationBar(
+          onTap: (index){
+            cubit.changeView(index);
+          },
+          currentIndex: cubit.currentIndex,
+          items: cubit.bottomNavList,
+        );
       },
-      currentIndex: 0,
-      items: const [
-        BottomNavigationBarItem(
-          label: 'Business',
-          icon: Icon(Icons.business_sharp),
-        ),
-        BottomNavigationBarItem(
-          label: 'Economy',
-          icon: Icon(Icons.monetization_on_rounded),
-        ),
-        BottomNavigationBarItem(
-          label: 'Sports',
-          icon: Icon(Icons.sports_basketball_rounded),
-        ),
-      ],
     );
   }
 }
