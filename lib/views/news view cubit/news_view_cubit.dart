@@ -32,8 +32,7 @@ class NewsViewCubit extends Cubit<NewsViewState> {
 
   int currentIndex = 0;
 
-  void changeView(int index)
-  {
+  void changeView(int index) {
     currentIndex = index;
     emit(NewsViewChangeSuccess());
   }

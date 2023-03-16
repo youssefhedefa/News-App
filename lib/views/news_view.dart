@@ -18,9 +18,10 @@ class NewsView extends StatelessWidget {
         return Scaffold(
           body: Column(
             mainAxisSize: MainAxisSize.max,
-            children: const [
-              CustomAppBar(),
-              CustomNewsList(),
+            children: [
+              const CustomAppBar(),
+              cubit.views[cubit.currentIndex],
+              //CustomNewsList(),
             ],
           ),
           bottomNavigationBar: const CustomBottomNavBar(),
