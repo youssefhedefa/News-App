@@ -34,7 +34,23 @@ class NewsViewCubit extends Cubit<NewsViewState> {
 
   void changeView(int index) {
     currentIndex = index;
-    emit(NewsViewChangeSuccess());
+    emit(NewsViewChangeViewSuccess());
+  }
+
+  Brightness appMode = Brightness.light;
+
+  Brightness changeAppMode()
+  {
+    if(appMode == Brightness.light)
+    {
+      appMode = Brightness.dark;
+    }
+    else if(appMode == Brightness.dark)
+    {
+      appMode = Brightness.light;
+    }
+    emit(NewsViewChangeModeSuccess());
+    return appMode;
   }
 
 }
