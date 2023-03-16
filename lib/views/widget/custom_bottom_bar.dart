@@ -10,19 +10,19 @@ class CustomBottomNavBar extends StatelessWidget {
       {
 
       },
-      currentIndex: 1,
+      currentIndex: 0,
       items: const [
         BottomNavigationBarItem(
-          label: 'label',
-          icon: Icon(Icons.import_contacts_sharp),
+          label: 'Business',
+          icon: Icon(Icons.business_sharp),
         ),
         BottomNavigationBarItem(
-          label: 'label',
-          icon: Icon(Icons.import_contacts_sharp),
+          label: 'Economy',
+          icon: Icon(Icons.monetization_on_rounded),
         ),
         BottomNavigationBarItem(
-          label: 'label',
-          icon: Icon(Icons.import_contacts_sharp),
+          label: 'Sports',
+          icon: Icon(Icons.sports_basketball_rounded),
         ),
       ],
     );
