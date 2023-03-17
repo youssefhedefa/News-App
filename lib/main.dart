@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapplication/bloc_observer.dart';
+import 'package:newsapplication/network/remote/dio_helper.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_cubit.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 import 'package:newsapplication/views/news_view.dart';
 
 void main() {
+  DioHelper.init();
   runApp(const MyApp());
   Bloc.observer = MyBlocObserver();
 
