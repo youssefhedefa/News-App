@@ -6,6 +6,6 @@ class EconomyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomNewsList();
+    return const CustomNewsList(list: [],);
   }
 }

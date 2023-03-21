@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapplication/views/business%20cubit/business_view_cubit.dart';
+import 'package:newsapplication/views/business%20cubit/business_view_state.dart';
 import 'package:newsapplication/views/widget/custom_news_list.dart';
 
 class BusinessView extends StatelessWidget {
@@ -7,6 +10,12 @@ class BusinessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomNewsList();
+    return BlocBuilder<BusinessViewCubit,BusinessViewStates>(
+      builder: (context,state){
+        var businessCubit = BlocProvider.of<BusinessViewCubit>(context);
+        return CustomNewsList(list: businessCubit.businessList,);
+        //return  Text(businessCubit.businessList[4]['title'].toString());
+      } ,
+    );
   }
 }

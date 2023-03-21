@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapplication/bloc_observer.dart';
 import 'package:newsapplication/network/remote/dio_helper.dart';
+import 'package:newsapplication/views/business%20cubit/business_view_cubit.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_cubit.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 import 'package:newsapplication/views/news_view.dart';
@@ -20,8 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(
-      create: (context) => NewsViewCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NewsViewCubit()),
+        BlocProvider(create: (context) => BusinessViewCubit()..getBusinessNews()),
+
+      ],
+      //create: (context) => NewsViewCubit(),
       child: BlocConsumer<NewsViewCubit,NewsViewState>(
         listener: (context,state){},
         builder: (context,state){
