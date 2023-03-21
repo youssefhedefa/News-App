@@ -15,8 +15,8 @@ class NewsViewCubit extends Cubit<NewsViewState> {
       icon: Icon(Icons.business_sharp),
     ),
     BottomNavigationBarItem(
-      label: 'Economy',
-      icon: Icon(Icons.monetization_on_rounded),
+      label: 'technology',
+      icon: Icon(Icons.laptop_chromebook_outlined),
     ),
     BottomNavigationBarItem(
       label: 'Sports',
