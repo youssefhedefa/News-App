@@ -7,6 +7,7 @@ import 'package:newsapplication/views/economy%20cubit/economy_view_cubit.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_cubit.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 import 'package:newsapplication/views/news_view.dart';
+import 'package:newsapplication/views/sports%20cubit/sports_view_cubit.dart';
 
 void main() {
   DioHelper.init();
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => NewsViewCubit()),
         BlocProvider(create: (context) => BusinessViewCubit()..getBusinessNews()),
-        BlocProvider(create: (context) => EconomyViewCubit()..getEconomicNews() )
+        BlocProvider(create: (context) => EconomyViewCubit()..getEconomicNews()),
+        BlocProvider(create: (context) => SportsViewCubit()..getSportsNews() )
+
       ],
       //create: (context) => NewsViewCubit(),
       child: BlocConsumer<NewsViewCubit,NewsViewState>(

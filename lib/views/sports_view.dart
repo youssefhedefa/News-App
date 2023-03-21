@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapplication/views/sports%20cubit/sports_view_cubit.dart';
+import 'package:newsapplication/views/sports%20cubit/sports_view_state.dart';
 import 'package:newsapplication/views/widget/custom_news_list.dart';
 
 class SportsView extends StatelessWidget {
@@ -6,6 +9,13 @@ class SportsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomNewsList(list: [],);
+    return BlocBuilder<SportsViewCubit, SportsViewStates>(
+      builder: (context, state) {
+        var sportsCubit = BlocProvider.of<SportsViewCubit>(context);
+        return CustomNewsList(
+          list: sportsCubit.sportsList,
+        );
+      },
+    );
   }
 }
