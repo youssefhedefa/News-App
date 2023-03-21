@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapplication/views/economy%20cubit/economy_view_cubit.dart';
+import 'package:newsapplication/views/economy%20cubit/economy_view_state.dart';
 import 'package:newsapplication/views/widget/custom_news_list.dart';
 
 class EconomyView extends StatelessWidget {
@@ -6,6 +9,13 @@ class EconomyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomNewsList(list: [],);
+    return BlocBuilder<EconomyViewCubit,EconomyViewStates>(
+      builder: (BuildContext context, state) {
+        var economyCubit = BlocProvider.of<EconomyViewCubit>(context);
+        return CustomNewsList(
+          list: economyCubit.economyList,
+        );
+      },
+    );
   }
 }
