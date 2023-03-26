@@ -9,41 +9,37 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<NewsViewCubit>(context);
-    return BlocBuilder<NewsViewCubit,NewsViewState>(
-      builder: (context,state){
-        return Container(
-          height:98,
-          padding: const EdgeInsets.only(
-            top: 32,
-            right: 16,
-            left: 16,
+    return Container(
+      height:98,
+      padding: const EdgeInsets.only(
+        top: 32,
+        right: 16,
+        left: 16,
+      ),
+      child: Row(
+        children: [
+          const Text(
+            'News Application',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          child: Row(
-            children: [
-              const Text(
-                'News Application',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Spacer(),
-              IconButton(onPressed: () {},
-                  icon: const Icon(Icons.search)
-              ),
-              const SizedBox(
-                width: 6,
-              ),
-              IconButton(
-                onPressed: () {
-                  cubit.changeAppMode();
-                },
-                icon: const Icon(Icons.mode_night_rounded),
-              ),
-            ],
+          const Spacer(),
+          IconButton(onPressed: () {},
+              icon: const Icon(Icons.search)
           ),
-        );
-      },
+          const SizedBox(
+            width: 6,
+          ),
+          IconButton(
+            onPressed: () {
+              cubit.changeAppMode();
+            },
+            icon: const Icon(Icons.mode_night_rounded),
+          ),
+        ],
+      ),
     );
   }
 }

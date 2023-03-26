@@ -41,7 +41,11 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.orange,
               brightness: cubit.appMode,
+              appBarTheme: const AppBarTheme(
+                color: Colors.white54,
+              ),
             ),
+
             debugShowCheckedModeBanner: false,
             home: const NewsView(),
           );

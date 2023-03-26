@@ -12,7 +12,7 @@ class EconomyView extends StatelessWidget {
     return BlocBuilder<EconomyViewCubit,EconomyViewStates>(
       builder: (BuildContext context, state) {
         var economyCubit = BlocProvider.of<EconomyViewCubit>(context);
-        return CustomNewsList(
+        return state is EconomyViewLoading?const Center(child: CircularProgressIndicator()): CustomNewsList(
           list: economyCubit.economyList,
         );
       },

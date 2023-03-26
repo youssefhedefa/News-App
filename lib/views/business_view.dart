@@ -13,7 +13,7 @@ class BusinessView extends StatelessWidget {
     return BlocBuilder<BusinessViewCubit,BusinessViewStates>(
       builder: (context,state){
         var businessCubit = BlocProvider.of<BusinessViewCubit>(context);
-        return CustomNewsList(list: businessCubit.businessList,);
+        return state is BusinessViewLoading?const Center(child: CircularProgressIndicator(),):CustomNewsList(list: businessCubit.businessList,);
         //return  Text(businessCubit.businessList[4]['title'].toString());
       } ,
     );

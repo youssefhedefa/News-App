@@ -12,7 +12,7 @@ class SportsView extends StatelessWidget {
     return BlocBuilder<SportsViewCubit, SportsViewStates>(
       builder: (context, state) {
         var sportsCubit = BlocProvider.of<SportsViewCubit>(context);
-        return CustomNewsList(
+        return state is SportsViewLoading?const Center(child: CircularProgressIndicator(),): CustomNewsList(
           list: sportsCubit.sportsList,
         );
       },
