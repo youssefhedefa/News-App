@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_cubit.dart';
-import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);

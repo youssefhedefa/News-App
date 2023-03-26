@@ -15,7 +15,6 @@ class NewsView extends StatelessWidget {
         var cubit = BlocProvider.of<NewsViewCubit>(context);
         return Scaffold(
           appBar: AppBar(
-
             elevation: 0.0,
             title: const Text(
               'News Application',

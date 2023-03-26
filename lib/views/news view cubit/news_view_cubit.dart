@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:newsapplication/network/local/cache_helper.dart';
 import 'package:newsapplication/views/economy_view.dart';
 import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 import 'package:newsapplication/views/business_view.dart';
 import 'package:newsapplication/views/sports_view.dart';
-
 
 class NewsViewCubit extends Cubit<NewsViewState> {
   NewsViewCubit() : super(NewsViewInitialize());
@@ -39,18 +39,32 @@ class NewsViewCubit extends Cubit<NewsViewState> {
 
   Brightness appMode = Brightness.light;
 
-  Brightness changeAppMode()
-  {
-    if(appMode == Brightness.light)
+  Brightness changeAppMode() {
+    if (appMode == Brightness.light)
     {
       appMode = Brightness.dark;
+      CacheHelper.setData('appMode', 'dark');
     }
-    else if(appMode == Brightness.dark)
+    else if (appMode == Brightness.dark)
     {
       appMode = Brightness.light;
+      CacheHelper.setData('appMode', 'light');
     }
     emit(NewsViewChangeModeSuccess());
     return appMode;
+  }
+
+  Brightness recallMode(String key){
+    String mode = CacheHelper.getData(key)??'';
+    if(mode == 'dark')
+    {
+      return Brightness.dark;
+    }
+    else if(mode == 'light')
+    {
+      return Brightness.light;
+    }
+    return Brightness.light;
   }
 
 }

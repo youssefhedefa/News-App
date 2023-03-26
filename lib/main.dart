@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapplication/bloc_observer.dart';
+import 'package:newsapplication/network/local/cache_helper.dart';
 import 'package:newsapplication/network/remote/dio_helper.dart';
 import 'package:newsapplication/views/business%20cubit/business_view_cubit.dart';
 import 'package:newsapplication/views/economy%20cubit/economy_view_cubit.dart';
@@ -9,17 +10,19 @@ import 'package:newsapplication/views/news%20view%20cubit/news_view_state.dart';
 import 'package:newsapplication/views/news_view.dart';
 import 'package:newsapplication/views/sports%20cubit/sports_view_cubit.dart';
 
-void main() {
+void main()async {
+  //to ensure that all future method is initialized
+  WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
-  runApp(const MyApp());
+  await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
+  runApp(const MyApp());
 
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
@@ -28,8 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => NewsViewCubit()),
         BlocProvider(create: (context) => BusinessViewCubit()..getBusinessNews()),
         BlocProvider(create: (context) => EconomyViewCubit()..getEconomicNews()),
-        BlocProvider(create: (context) => SportsViewCubit()..getSportsNews() )
-
+        BlocProvider(create: (context) => SportsViewCubit()..getSportsNews() ),
       ],
       //create: (context) => NewsViewCubit(),
       child: BlocConsumer<NewsViewCubit,NewsViewState>(
@@ -40,7 +42,9 @@ class MyApp extends StatelessWidget {
             title: 'News Application',
             theme: ThemeData(
               primarySwatch: Colors.orange,
-              brightness: cubit.appMode,
+              //brightness: cubit.appMode,
+              brightness: cubit.recallMode('appMode'),
+
               appBarTheme: const AppBarTheme(
                 color: Colors.white54,
               ),
