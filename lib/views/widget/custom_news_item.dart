@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class CustomNewsItem extends StatelessWidget {
   const CustomNewsItem({Key? key, required this.item}) : super(key: key);

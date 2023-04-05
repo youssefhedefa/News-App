@@ -10,32 +10,36 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SearchViewCubit,SearchViewState>(
-      listener: (context,state){},
-      builder: (context,state){
+    return BlocConsumer<SearchViewCubit, SearchViewState>(
+      listener: (context, state) {},
+      builder: (context, state) {
         var searchCubit = BlocProvider.of<SearchViewCubit>(context);
         return Scaffold(
             appBar: const CustomBar(),
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  TextFormField(
+            body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
                     decoration: InputDecoration(
-
-                      prefixIcon:const Icon(Icons.search),
-                      label:const Text('Search'),
-                      border:
-                      OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                      prefixIcon: const Icon(Icons.search),
+                      label: const Text('Search'),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5)),
                     ),
-                    onChanged: (value){
+                    onChanged: (value) {
                       searchCubit.getSearchData(value);
                     },
                   ),
-                  CustomNewsList(list: searchCubit.search),
-                ],
-              ),
-            ));
+                ),
+                state is SearchViewLoadingState
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : CustomNewsList(list: searchCubit.search),
+              ],
+            )
+        );
       },
     );
   }
