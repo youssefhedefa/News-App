@@ -67,4 +67,5 @@ class NewsViewCubit extends Cubit<NewsViewState> {
     return Brightness.light;
   }
 
+
 }

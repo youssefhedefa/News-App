@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomNewsItem extends StatelessWidget {
   const CustomNewsItem({Key? key, required this.item}) : super(key: key);
@@ -6,6 +7,8 @@ class CustomNewsItem extends StatelessWidget {
   final Map<dynamic,dynamic> item;
   @override
   Widget build(BuildContext context) {
+    // var currentDate = item['publishedAt'] as DateTime ;
+    // String formattedDate = DateFormat.yMd().format(currentDate);
      if(item['urlToImage'] == null)
      {
        item['urlToImage'] = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png';
@@ -37,7 +40,7 @@ class CustomNewsItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                       textAlign: TextAlign.start,
-                      maxLines: 3,
+                      maxLines: 4,
                       '${item['title']}',
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600
@@ -48,6 +51,7 @@ class CustomNewsItem extends StatelessWidget {
                   Padding(
                     padding:const EdgeInsets.only(left: 120),
                     child: Text(
+                      maxLines: 1,
                       textAlign: TextAlign.left,
                       '${item['publishedAt']}',
                       style: const TextStyle(
