@@ -21,7 +21,16 @@ class NewsView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              cubit.views[cubit.currentIndex],
+              Expanded(
+                child: PageView.builder(
+                  itemBuilder: (context, index) {
+                    cubit.changeView(index);
+                    return cubit.views[cubit.currentIndex];
+                  },
+                  itemCount: cubit.views.length,
+                ),
+              ),
+              //cubit.views[cubit.currentIndex],
             ],
           ),
           bottomNavigationBar: const CustomBottomNavBar(),
@@ -30,5 +39,3 @@ class NewsView extends StatelessWidget {
     );
   }
 }
-
-
